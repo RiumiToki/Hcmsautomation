@@ -1,0 +1,69 @@
+{
+  "MENU_LOGIN": {
+    "LOGINPASSWORDINVALID": {
+      "username": "Admin",
+      "password": "Admin123456"
+    },
+    "LOGINKREDENSIALINVALID": {
+      "username": "wanto",
+      "password": "ada12345"
+    }
+  },
+  "MENU_ADMIN": {
+    "ADDUSERADMIN": {
+      "userrole": "admin",
+      "employeename": "Peter Mac Anderson",
+      "status": "Enabled",
+      "username": "wawan",
+      "password": "Wawan123"
+    },
+    "UPDATEUSERADMIN": {
+      "username": "wawan1"
+    }
+  },
+  "MENU_DIRECTORY": {
+    "SEARCHJOBTITLEINVALID": {
+      "jobTitle": "abc"
+    },
+    "SEARCHLOCATIONINVALID": {
+      "location": "Canadian Regional HQ"
+    },
+    "SEARCHNAMEINVALID": {
+      "name": "Nasigoreng"
+    },
+    "SEARCHJOBTITLEVALID": {
+      "jobTitle": "Chief Financial Officer",
+      "expectedResult": "Peter Mac Anderson Chief"
+    },
+    "SEARCHLOCATIONVALID": {
+      "location": "New York Sales Office",
+      "expectedResults": [
+        "Peter Mac Anderson Chief",
+        "Sania Shaheen Customer"
+      ]
+    },
+    "SEARCHNAMEVALID": {
+      "nameInput": "sairam",
+      "nameDropdown": "sairam boya",
+      "expectedResult": "sairam boya HR ManagerHuman ResourcesTexas R&D"
+    }
+  },
+  "MENU_LEAVE": {
+    "ASSIGNLEAVESUCCESS": {
+      "employeeName": "joshua",
+      "employeeOption": "Joshua Hunter ytGWXSvvfH",
+      "leaveType": "CAN - Personal",
+      "fromDate": "29",
+      "toDate": "29",
+      "comment": "mau nonton onepiece"
+    },
+    "ASSIGNLEAVEFAILED": {
+      "employeeName": "Hello",
+      "employeeOption": "Hello Hunter Div",
+      "leaveType": "CAN - Personal",
+      "fromDate": "29",
+      "toDate": "29",
+      "comment": "Mau namatin Conan"
+    }
+  }
+}

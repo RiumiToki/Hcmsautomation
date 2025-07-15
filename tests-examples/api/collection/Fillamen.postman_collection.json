@@ -1,0 +1,369 @@
+const collection = {
+	"info": {
+		"_postman_id": "890c3714-0e8f-4889-b5e8-db64f13a286e",
+		"name": "Fillamen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11699270"
+	},
+	"item": [
+		{
+			"name": "Barang",
+			"item": [
+				{
+					"name": "List Barang",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}admin/barangs",
+							"host": [
+								"{{BASE_URL}}admin"
+							],
+							"path": [
+								"barangs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Barang By Id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}admin/barangs/2",
+							"host": [
+								"{{BASE_URL}}admin"
+							],
+							"path": [
+								"barangs",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Barang",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}admin/barangs/2",
+							"host": [
+								"{{BASE_URL}}admin"
+							],
+							"path": [
+								"barangs",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tambah Barang",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nama_barang",
+									"value": "jam",
+									"type": "text"
+								},
+								{
+									"key": "kode_barang",
+									"value": "SN05",
+									"type": "text"
+								},
+								{
+									"key": "harga_barang",
+									"value": "43000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}admin/barangs",
+							"host": [
+								"{{BASE_URL}}admin"
+							],
+							"path": [
+								"barangs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Barang",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{
+    "nama_barang": "Sepatu Adidas"
+}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}admin/barangs/2",
+							"host": [
+								"{{BASE_URL}}admin"
+							],
+							"path": [
+								"barangs",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pelanggan",
+			"item": [
+				{
+					"name": "List Pelanggan",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}admin/pelanggans",
+							"host": [
+								"{{BASE_URL}}admin"
+							],
+							"path": [
+								"pelanggans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Pelanggan By Id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}admin/pelanggans/1",
+							"host": [
+								"{{BASE_URL}}admin"
+							],
+							"path": [
+								"pelanggans",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Pelanggan",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}admin/pelanggans/2",
+							"host": [
+								"{{BASE_URL}}admin"
+							],
+							"path": [
+								"pelanggans",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tambah Pelanggan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nama",
+									"value": "Dirman",
+									"type": "text"
+								},
+								{
+									"key": "alamat",
+									"value": "Jakarta",
+									"type": "text"
+								},
+								{
+									"key": "nomor_hp",
+									"value": "08231923",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}admin/pelanggans/",
+							"host": [
+								"{{BASE_URL}}admin"
+							],
+							"path": [
+								"pelanggans",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Pelanggan",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nama",
+									"value": "Indra",
+									"type": "text"
+								},
+								{
+									"key": "alamat",
+									"value": "Pekanbaru",
+									"type": "text"
+								},
+								{
+									"key": "nomor_hp",
+									"value": "023714",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}admin/pelanggans/1",
+							"host": [
+								"{{BASE_URL}}admin"
+							],
+							"path": [
+								"pelanggans",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
