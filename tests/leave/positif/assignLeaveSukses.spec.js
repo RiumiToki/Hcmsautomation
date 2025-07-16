@@ -1,23 +1,21 @@
-// Standarisasi Boilerplate Code
+//Sesuaikan tanggal cari tanggal yang belum diambil dan juga sesuaikan nama employee contoh albert n stein
+//menjadi nama user sekarang
 import { expect, test } from '@playwright/test';
 import { ReportingApi } from '@reportportal/agent-js-playwright';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-// baris ini berfungsi untuk menggunakan data testing
-const devTestData = JSON.parse(JSON.stringify(require('../../../data/dev/dataDev.json')));
-const dataDev = devTestData.MENU_LEAVE.ASSIGNLEAVESUCCESS;
+const devTestData = require('../../../data/dev/dataDev.json');
+const qaTestData = require('../../../data/qa/dataQa.json');
 
-const qaTestData = JSON.parse(JSON.stringify(require('../../../data/qa/dataQa.json')));
-const dataQa = qaTestData.MENU_LEAVE.ASSIGNLEAVESUCCESS;
-
-// baris ini berfungsi agar test yang dijalankan berurutan
-test.describe.configure({ mode: "serial" });
+test.describe.configure({ mode: 'serial' });
 
 test.describe('@flow', () => {
   test('Berhasil assign leave untuk employee', async ({ page, browserName }, testInfo) => {
     ReportingApi.setTestCaseId('TS-UI-LEAVE-002');
 
     ReportingApi.setDescription(`
-      Test Step :
+      Test Step:
       1. Visit ke url OrangeHRM
       2. Klik menu Assign Leave
       3. Isi employee name, leave type, tanggal from dan to, serta comment
@@ -27,9 +25,14 @@ test.describe('@flow', () => {
 
     ReportingApi.addAttributes([{ key: 'browser', value: browserName }]);
 
-    let testData = dataDev;
-    if (process.env.ENV === 'qa') {
-      testData = dataQa;
+    const env = process.env.ENV === 'qa' ? 'qa' : 'dev';
+    const testData =
+      env === 'qa'
+        ? qaTestData.MENU_LEAVE.ASSIGNLEAVESUCCESS
+        : devTestData.MENU_LEAVE.ASSIGNLEAVESUCCESS;
+
+    if (!process.env.WEB_URL) {
+      throw new Error('WEB_URL is not defined. Set it in .env file or environment variable.');
     }
 
     await page.goto(process.env.WEB_URL);
@@ -46,12 +49,13 @@ test.describe('@flow', () => {
     await page.locator('textarea').fill(testData.comment);
     await page.getByRole('button', { name: 'Assign' }).click();
     await page.getByRole('button', { name: 'Ok' }).click();
+
     await expect(page.getByText('SuccessSuccessfully Saved×')).toBeVisible();
 
     const screenshot = await page.screenshot();
-    await testInfo.attach("Screenshot", {
+    await testInfo.attach('Screenshot', {
       body: screenshot,
-      contentType: "image/png",
+      contentType: 'image/png'
     });
   });
 });

@@ -1,15 +1,12 @@
-// Standarisasi Boilerplate Code
+//pake job title yang pertama kalo gaada yang kutak atik bakal kosong sesuain aja namanya skarang Account Assistant
 import { expect, test } from '@playwright/test';
 import { ReportingApi } from '@reportportal/agent-js-playwright';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-// baris ini berfungsi untuk menggunakan data testing
-const devTestData = JSON.parse(JSON.stringify(require('../../../data/dev/dataDev.json')));
-const dataDev = devTestData.MENU_DIRECTORY.SEARCHJOBTITLEINVALID;
+const devTestData = require('../../../data/dev/dataDev.json');
+const qaTestData = require('../../../data/qa/dataQa.json');
 
-const qaTestData = JSON.parse(JSON.stringify(require('../../../data/qa/dataQa.json')));
-const dataQa = qaTestData.MENU_DIRECTORY.SEARCHJOBTITLEINVALID;
-
-// baris ini berfungsi agar test yang dijalankan berurutan
 test.describe.configure({ mode: "serial" });
 
 test.describe('@flow', () => {
@@ -27,9 +24,13 @@ test.describe('@flow', () => {
 
     ReportingApi.addAttributes([{ key: 'browser', value: browserName }]);
 
-    let testData = dataDev;
-    if (process.env.ENV === 'qa') {
-      testData = dataQa;
+    const testData =
+      process.env.ENV === 'qa'
+        ? qaTestData.MENU_DIRECTORY.SEARCHJOBTITLEINVALID
+        : devTestData.MENU_DIRECTORY.SEARCHJOBTITLEINVALID;
+
+    if (!process.env.WEB_URL) {
+      throw new Error('WEB_URL is not defined. Please define WEB_URL in .env or your environment.');
     }
 
     await page.goto(process.env.WEB_URL);
@@ -37,7 +38,10 @@ test.describe('@flow', () => {
     await page.locator('form i').first().click();
     await page.getByRole('option', { name: testData.jobTitle }).click();
     await page.getByRole('button', { name: 'Search' }).click();
-    await expect(page.locator('div').filter({ hasText: /^No Records Found$/ }).nth(3)).toBeVisible();
+
+    await expect(
+      page.locator('div').filter({ hasText: /^No Records Found$/ }).nth(3)
+    ).toBeVisible();
 
     const screenshot = await page.screenshot();
     await testInfo.attach("Screenshot", {

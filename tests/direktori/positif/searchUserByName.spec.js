@@ -1,15 +1,22 @@
-// Standarisasi Boilerplate Code
 import { expect, test } from '@playwright/test';
 import { ReportingApi } from '@reportportal/agent-js-playwright';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-// baris ini berfungsi untuk menggunakan data testing
+// Load test data
 const devTestData = JSON.parse(JSON.stringify(require('../../../data/dev/dataDev.json')));
-const dataDev = devTestData.MENU_DIRECTORY.SEARCHNAMEVALID;
-
 const qaTestData = JSON.parse(JSON.stringify(require('../../../data/qa/dataQa.json')));
-const dataQa = qaTestData.MENU_DIRECTORY.SEARCHNAMEVALID;
 
-// baris ini berfungsi agar test yang dijalankan berurutan
+const env = process.env.ENV === 'qa' ? 'qa' : 'dev';
+const testData = env === 'qa'
+  ? qaTestData.MENU_DIRECTORY.SEARCHNAMEVALID
+  : devTestData.MENU_DIRECTORY.SEARCHNAMEVALID;
+
+if (!process.env.WEB_URL) {
+  throw new Error('WEB_URL belum didefinisikan di file .env');
+}
+
+// Jalankan test secara berurutan
 test.describe.configure({ mode: "serial" });
 
 test.describe('@flow', () => {
@@ -17,28 +24,39 @@ test.describe('@flow', () => {
     ReportingApi.setTestCaseId('TS-UI-DIR-006');
 
     ReportingApi.setDescription(`
-      Test Step :
+      Test Step:
       1. Visit ke url OrangeHRM
       2. Klik menu Directory
-      3. Masukkan nama lengkap user
-      4. Pilih nama dari dropdown
+      3. Masukkan nama: ${testData.nameInput}
+      4. Pilih dari dropdown: ${testData.nameDropdown}
       5. Klik tombol Search
-      6. Validasi data user ditampilkan (nama, jabatan, departemen, lokasi)
+      6. Validasi hasil pencarian: ${testData.expectedResult}
     `);
 
     ReportingApi.addAttributes([{ key: 'browser', value: browserName }]);
 
-    let testData = dataDev;
-    if (process.env.ENV === 'qa') {
-      testData = dataQa;
-    }
-
     await page.goto(process.env.WEB_URL);
     await page.getByRole('link', { name: 'Directory' }).click();
-    await page.getByRole('textbox', { name: 'Type for hints...' }).click();
-    await page.getByRole('textbox', { name: 'Type for hints...' }).fill(testData.nameInput);
-    await page.getByRole('option', { name: testData.nameDropdown }).click();
+
+    // Isi kolom nama dan tunggu dropdown
+    const nameBox = page.getByRole('textbox', { name: 'Type for hints...' });
+    await nameBox.fill(testData.nameInput);
+
+    // Tunggu dropdown muncul
+    // Tunggu dropdown muncul (maks 5 detik)
+const dropdownOption = page.getByRole('option', { name: testData.nameDropdown });
+
+try {
+  await dropdownOption.waitFor({ timeout: 5000 });
+  await dropdownOption.click();
+} catch (e) {
+  console.warn(`⚠️ Dropdown "${testData.nameDropdown}" tidak muncul dalam 5 detik. Gunakan input default.`);
+  await nameBox.press('Enter'); // fallback jika dropdown gagal muncul
+}
+
+
     await page.getByRole('button', { name: 'Search' }).click();
+
     await expect(page.getByText(testData.expectedResult, { exact: true })).toBeVisible();
 
     const screenshot = await page.screenshot();

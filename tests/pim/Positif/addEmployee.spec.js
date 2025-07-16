@@ -1,23 +1,22 @@
 // Standarisasi Boilerplate Code
 import { expect, test } from '@playwright/test';
 import { ReportingApi } from '@reportportal/agent-js-playwright';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-// baris ini berfungsi untuk menggunakan data testing
-const devTestData = JSON.parse(JSON.stringify(require('../../../data/dev/dataDev.json')));
-const dataDev = devTestData.MENU_PIM.ADDEMPLOYEEVALID;
+// Agar test berjalan berurutan
+test.describe.configure({ mode: 'serial' });
 
-const qaTestData = JSON.parse(JSON.stringify(require('../../../data/qa/dataQa.json')));
-const dataQa = qaTestData.MENU_PIM.ADDEMPLOYEEVALID;
-
-// baris ini berfungsi agar test yang dijalankan berurutan
-test.describe.configure({ mode: "serial" });
+// Load external JSON test data
+const devTestData = require('../../../data/dev/dataDev.json');
+const qaTestData = require('../../../data/qa/dataQa.json');
 
 test.describe('@flow', () => {
   test('Berhasil menambahkan employee baru', async ({ page, browserName }, testInfo) => {
     ReportingApi.setTestCaseId('TS-UI-PIM-002');
 
     ReportingApi.setDescription(`
-      Test Step :
+      Test Step:
       1. Visit ke url OrangeHRM
       2. Klik menu PIM
       3. Klik tombol Add
@@ -28,24 +27,28 @@ test.describe('@flow', () => {
 
     ReportingApi.addAttributes([{ key: 'browser', value: browserName }]);
 
-    let testData = dataDev;
-    if (process.env.ENV === 'qa') {
-      testData = dataQa;
-    }
+    const env = process.env.ENV || 'dev';
+    const testData =
+      env === 'qa'
+        ? qaTestData.MENU_PIM.ADDEMPLOYEEVALID
+        : devTestData.MENU_PIM.ADDEMPLOYEEVALID;
 
-    await page.goto(process.env.WEB_URL);
+    const url = process.env.WEB_URL || 'https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index';
+
+    await page.goto(url);
     await page.getByRole('link', { name: 'PIM' }).click();
     await page.getByRole('button', { name: ' Add' }).click();
     await page.getByRole('textbox', { name: 'First Name' }).fill(testData.firstname);
     await page.getByRole('textbox', { name: 'Middle Name' }).fill(testData.middlename);
     await page.getByRole('textbox', { name: 'Last Name' }).fill(testData.lastname);
     await page.getByRole('button', { name: 'Save' }).click();
+
     await expect(page.getByText('SuccessSuccessfully Saved×')).toBeVisible();
 
     const screenshot = await page.screenshot();
-    await testInfo.attach("Screenshot", {
+    await testInfo.attach('Screenshot', {
       body: screenshot,
-      contentType: "image/png",
+      contentType: 'image/png'
     });
   });
 });

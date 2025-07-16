@@ -1,15 +1,26 @@
+//pake lokasi pertama liat diubah ga ama orang
 // Standarisasi Boilerplate Code
 import { expect, test } from '@playwright/test';
 import { ReportingApi } from '@reportportal/agent-js-playwright';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-// baris ini berfungsi untuk menggunakan data testing
-const devTestData = JSON.parse(JSON.stringify(require('../../../data/dev/dataDev.json')));
-const dataDev = devTestData.MENU_DIRECTORY.SEARCHLOCATIONINVALID;
+// Load external test data
+const devTestData = require('../../../data/dev/dataDev.json');
+const qaTestData = require('../../../data/qa/dataQa.json');
 
-const qaTestData = JSON.parse(JSON.stringify(require('../../../data/qa/dataQa.json')));
-const dataQa = qaTestData.MENU_DIRECTORY.SEARCHLOCATIONINVALID;
+// Ambil data berdasarkan ENV
+const testData =
+  process.env.ENV === 'qa'
+    ? qaTestData.MENU_DIRECTORY.SEARCHLOCATIONINVALID
+    : devTestData.MENU_DIRECTORY.SEARCHLOCATIONINVALID;
 
-// baris ini berfungsi agar test yang dijalankan berurutan
+// Validasi ENV
+if (!process.env.WEB_URL) {
+  throw new Error('WEB_URL belum didefinisikan. Tambahkan di file .env');
+}
+
+// Serial agar test dijalankan urut
 test.describe.configure({ mode: "serial" });
 
 test.describe('@flow', () => {
@@ -17,7 +28,7 @@ test.describe('@flow', () => {
     ReportingApi.setTestCaseId('TS-UI-DIR-002');
 
     ReportingApi.setDescription(`
-      Test Step :
+      Test Step:
       1. Visit ke url OrangeHRM
       2. Klik menu Directory
       3. Pilih lokasi (yang tidak ada datanya)
@@ -26,11 +37,6 @@ test.describe('@flow', () => {
     `);
 
     ReportingApi.addAttributes([{ key: 'browser', value: browserName }]);
-
-    let testData = dataDev;
-    if (process.env.ENV === 'qa') {
-      testData = dataQa;
-    }
 
     await page.goto(process.env.WEB_URL);
     await page.getByRole('link', { name: 'Directory' }).click();

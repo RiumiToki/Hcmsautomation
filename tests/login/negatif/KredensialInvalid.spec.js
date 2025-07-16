@@ -4,10 +4,10 @@ import { ReportingApi } from '@reportportal/agent-js-playwright';
 
 // baris ini berfungsi untuk menggunakan data testing
 const devTestData = JSON.parse(JSON.stringify(require('../../../data/dev/dataDev.json')));
-const dataDev = devTestData.MENU_LOGIN.LOGINPASSWORDINVALID;
+const dataDev = devTestData.MENU_LOGIN.LOGINKREDENSIALINVALID;
 
 const qaTestData = JSON.parse(JSON.stringify(require('../../../data/qa/dataQa.json')));
-const dataQa = qaTestData.MENU_LOGIN.LOGINPASSWORDINVALID;
+const dataQa = qaTestData.MENU_LOGIN.LOGINKREDENSIALINVALID;
 
 /** script berikut berfungsi untuk clear session.
  *  script ini harus dihapus disemua file,
