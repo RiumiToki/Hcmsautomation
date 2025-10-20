@@ -1,12 +1,16 @@
-
-# Playwright
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
 
+# Env files
 .env
+.env.*
 example.env
+
+# Git hooks
 .husky
-user.json
+
+# Saved sessions (ignore auth folder)
+config/auth/

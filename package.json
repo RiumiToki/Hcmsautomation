@@ -8,7 +8,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.54.0",
+    "@playwright/test": "^1.55.0",
     "@reportportal/agent-js-playwright": "^5.1.11",
     "@reportportal/newman-reporter-agent-js-postman": "^5.1.1",
     "@types/node": "^24.0.13",

@@ -1,80 +1,45 @@
 {
-  "MENU_LOGIN": {
-    "LOGINKREDENSIALVALID": {
-      "username": "Admin",
-      "password": "admin123"
-    },
-    "LOGINKREDENSIALINVALID": {
-      "username": "wanto",
-      "password": "ada12345"
+  "MENU_ATTENDANCE": {
+    "DOWNLOADCARD": {
+      "username": "Demoneuron",
+      "password": "standar",
+      "dashboardUrl": "https://hcms-web-ohc-hcms-dev.apps.ocp-dev.pegadaian.co.id/attendance/dashboard/reporting-hr?start_date=16+September+2025&end_date=15+October+2025&interval_monitoring_att=6"
     }
   },
-  "MENU_PIM": {
-    "ADDEMPLOYEEFIELDREQUIRED": {
-      "firstname": "Joko",
-      "middlename": "Cahaya"
-    },
-    "CHANGEPASSWORDFAILED": {
-      "username": "Albert Stein",
-      "currentPassword": "admin123",
-      "newPassword": "ayamgoreng",
-      "confirmPassword": "ayamgoreng"
-    },
-    "CHANGEPASSWORDSUCCESS": {
-      "username": "Albert Stein",
-      "currentPassword": "admin123",
-      "newPassword": "ayamgoreng1",
-      "confirmPassword": "ayamgoreng1"
-    },
-    "ADDEMPLOYEEVALID": {
-      "firstname": "Joko",
-      "middlename": "Cahaya",
-      "lastname": "Langit"
+  "MENU_EMPLOYEE": {
+    "ADDEDUCATION": {
+      "username": "Demoneuron",
+      "password": "standar",
+      "employeeCode": "P11170 (P632511170) TEGUH",
+      "educationLevel": "Sarjana",
+      "institution": "Teknik Mie Ayam",
+      "startYear": "2020",
+      "endYear": "2022",
+      "manageEmployeeUrl": "https://hcms-web-ohc-hcms-dev.apps.ocp-dev.pegadaian.co.id/addon/employee/pegadaian/index/manage"
     }
   },
-  "MENU_LEAVE": {
-    "ASSIGNLEAVEFAILED": {
-      "employeeName": "Albert",
-      "employeeOption": "Albert N Stein",
-      "leaveType": "CAN - Personal",
-      "fromDate": "29",
-      "toDate": "29",
-      "comment": "Mau namatin Conan"
-    },
-    "ASSIGNLEAVESUCCESS": {
-      "employeeName": "Albert",
-      "employeeOption": "Albert N Stein",
-      "leaveType": "CAN - Personal",
-      "fromDate": "17",
-      "toDate": "17",
-      "comment": "Mau namatin One Piece"
-    }
+  "baseUrl": "https://hcms-web-ohc-hcms-dev.apps.ocp-dev.pegadaian.co.id",
+  "credentials": {
+    "username": "Demoneuron",
+    "password": "standar"
   },
-  "MENU_DIRECTORY": {
-    "SEARCHJOBTITLEINVALID": {
-      "jobTitle": "Account Assistant"
-    },
-    "SEARCHLOCATIONINVALID": {
-      "location": "Canadian Regional HQ"
-    },
-    "SEARCHNAMEINVALID": {
-      "name": "Chicken Steak"
-    },
-    "SEARCHJOBTITLEVALID": {
-      "jobTitle": "Chief Financial Officer",
-      "expectedResult": "Peter Mac Anderson"
-    },
-    "SEARCHLOCATIONVALID": {
-      "location": "New York Sales Office",
-      "expectedResults": [
-        "Peter Mac Anderson",
-        "Sania Shaheen"
-      ]
-    },
-    "SEARCHNAMEVALID": {
-      "nameInput": "Sania",
-      "nameDropdown": "Sania Shaheen",
-      "expectedResult": "Sania Shaheen"
-    }
+  "selectors": {
+    "usernameField": { "role": "textbox", "name": "User code or email *" },
+    "passwordField": { "role": "textbox", "name": "Password *" },
+    "loginButton": { "role": "button", "name": "Login" },
+    "reportingButton": { "role": "button", "name": "  Reporting" },
+    "attendanceButton": { "role": "button", "name": "  Attendance" },
+    "dashboardLink": { "role": "link", "name": " Dashboard Attendance HR" },
+    "downloadLink": { "role": "link", "name": " Unduh" },
+    "dataText": "% Data :50/12423",
+    "employeeMenuButton": { "role": "button", "name": "  Employee" },
+    "manageEmployeeLink": { "role": "link", "name": " Manage Employee" },
+    "educationTab": { "role": "tab", "name": " Pendidikan sekolah" },
+    "addEducationButton": "#add-education-formal",
+    "educationLevelDropdown": { "role": "combobox", "name": "Choose education level" },
+    "saveButton": { "role": "button", "name": "Simpan" }
+  },
+  "urls": {
+    "dashboardAttendance": "https://hcms-web-ohc-hcms-dev.apps.ocp-dev.pegadaian.co.id/attendance/dashboard/reporting-hr"
   }
 }

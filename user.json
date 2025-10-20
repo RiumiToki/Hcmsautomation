@@ -1,0 +1,58 @@
+{
+  "cookies": [
+    {
+      "name": "_GRECAPTCHA",
+      "value": "09AG7bzvF1aMicLbll469NE0YoqjgBn-Bfa3FQdEneT_SzDxMzfJaSRm1gMlbN7oP_qhL0iCMQCjh_6bCastjkgzI",
+      "domain": "www.google.com",
+      "path": "/recaptcha",
+      "expires": 1774690661.039232,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "8e5e62b503192fc5751ffdefb1422297",
+      "value": "be3fa106ffbd2299b86b169f07252f66",
+      "domain": "hcms-web-ohc-hcms-dev.apps.ocp-dev.pegadaian.co.id",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "hcms",
+      "value": "vvev4gjk36o1mrusahngm4oekl",
+      "domain": "hcms-web-ohc-hcms-dev.apps.ocp-dev.pegadaian.co.id",
+      "path": "/",
+      "expires": 1759743465.230402,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://hcms-web-iso-fdua-ohc-hcms-dev.apps.ocp-dev.pegadaian.co.id/index",
+      "localStorage": [
+        {
+          "name": "_grecaptcha",
+          "value": "09AG7bzvGhFY7Q_EidSXYZgdhA3LBcf5TgKzIfapbCOiW6wgg3GaAFajhKg-98bFzY6oBEjKXZ0XWdjgMWh6C3rCGTDHklgVMf6eYUDyVK8WVSXaFkrv4xuIuwqC4mf4Oj"
+        }
+      ]
+    },
+    {
+      "origin": "https://www.google.com",
+      "localStorage": [
+        {
+          "name": "rc::a",
+          "value": "eHllbXFhNmJ6MXlo"
+        },
+        {
+          "name": "rc::f",
+          "value": "0aAGmBFiv9-n4jiVX0HFI4JpIDPCx0H5vZyz5HFvNghdlDkww4trQ7YE7eOcWQPmF5XUBUK0g"
+        }
+      ]
+    }
+  ]
+}
