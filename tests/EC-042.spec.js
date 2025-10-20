@@ -19,7 +19,7 @@ test('View Pengaturan Golongan page for selected employee', async ({ page }) => 
     .getByRole('row', { name: /P11170.*TEGUH/ })
     .getByRole('button')
     .nth(2)
-    .click();
+    .click(); 
 
   // Navigate to "Pengaturan Golongan"
   await page.getByRole('link', { name: /Pengaturan Golongan/ }).click();

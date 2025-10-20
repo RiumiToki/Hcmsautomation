@@ -7,7 +7,7 @@ test('EC-050: Create New Contract (Teguh Wahyono)', async ({ page }) => {
   // --- 📅 Date setup (dd-MM-yyyy format) ---
   const today = new Date();
   const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const mm = String(today.getMonth() - 2).padStart(2, '0');
   const yyyy = today.getFullYear();
   const formattedDate = `${dd}/${mm}/${yyyy}`;
 
@@ -34,10 +34,6 @@ test('EC-050: Create New Contract (Teguh Wahyono)', async ({ page }) => {
   // Start Date = today
   await page.locator('#start_date').click();
   await page.locator(`#datepickers-container >> text=${today.getDate()}`).first().click();
-
-  // End Date = +30 days
-  await page.locator('#end_date').click();
-  await page.locator(`#datepickers-container >> text=${endDay}`).first().click();
 
   // Document Date = today
   await page.locator('#document_date').click();
